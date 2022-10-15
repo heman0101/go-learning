@@ -8,7 +8,7 @@ import (
 
 func searchInsert(nums []int, target int) int {
 	for i := 0; i < len(nums); i++ {
-		if target <= nums[i] { //target小于或者等于遍历的数时，索引或者插入的位置就是i
+		if target <= nums[i] { //target小于或者等于遍历的数时，索引或者插入的位置就是i 
 			return i
 		}
 	}
