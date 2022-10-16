@@ -1,17 +1,24 @@
 package homework1013
 
-import "testing"       
+import (
+	"reflect"
+	"testing"
+)
 
+// sortedSquares有序数组的平方
+// 双指针法
+// 数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间。  
 func sortedSquares(nums []int) []int {
 	var i, j, k int = 0, len(nums) - 1, len(nums) - 1
-	r := make([]int, len(nums))
+	r := make([]int, len(nums))  //定义一个新数组r，和原数组一样的大小
 
 	for i <= j {
 		ln, rn := nums[i]*nums[i], nums[j]*nums[j]
 		if ln >= rn {
 			r[k] = ln
 			i++
-		} else {
+		} 
+		if ln < rn {
 			r[k] = rn
 			j--
 		}
@@ -31,10 +38,9 @@ func TestSortedSquares(t *testing.T) {
 	}
 
 	for _, v := range data {
-		
-		// sortedSquares(nums)
-		if sortedSquares(nums) != v.answer {
-			t.Fatalf("expect:[%v] != result[%v]", sortedSquares(nums), v.answer)
+		result := sortedSquares(v.nums)
+		if !reflect.DeepEqual(result,v.answer) {      //reflect.DeepEqual函数判断切片是否相等
+			t.Fatalf("expect:[%v] != result[%v]", result, v.answer)
 		}
 	}
 }
