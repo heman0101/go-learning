@@ -1,6 +1,6 @@
 package homework1013
 
-import "testing"     
+import "testing"       
 
 func sortedSquares(nums []int) []int {
 	var i, j, k int = 0, len(nums) - 1, len(nums) - 1
