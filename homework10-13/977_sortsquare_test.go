@@ -6,7 +6,7 @@ import (
 )
 
 // sortedSquares有序数组的平方
-// 双指针法
+// 双指针法 
 // 数组平方的最大值就在数组的两端，不是最左边就是最右边，不可能是中间。  
 func sortedSquares(nums []int) []int {
 	var i, j, k int = 0, len(nums) - 1, len(nums) - 1

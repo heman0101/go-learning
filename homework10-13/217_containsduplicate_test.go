@@ -6,7 +6,7 @@ import (
 )
 
 
-//containsDuplicate函数判断是否存在重复元素  
+//containsDuplicate函数判断是否存在重复元素   
 // 先对元素进行排序，然后遍历是否存在相邻一样的元素
 func containsDuplicate(nums []int) bool {
 	sort.Ints(nums)         //sort.Ints函数对切片从小到大排序 
