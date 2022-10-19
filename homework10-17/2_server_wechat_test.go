@@ -34,7 +34,7 @@ func refer(title, desp string) (string, string, string) {
 	}
 
 	resp, _ := http.Get(api + string(str) + ".send?title=" + title + "&desp=" + desp)
-	//Transformation进行返回值转换
+	//调用Transformation函数进行返回值转换
 	result := Transformation(resp)
 
 	//读取result中的pushid, readkey, error
@@ -68,6 +68,7 @@ func consult(pushid, readkey string) string {
 	return errmsg.(string)
 }
 
+// 测试函数
 func TestPushWeChat(t *testing.T) {
 	data := []struct {
 		title   string
