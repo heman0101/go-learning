@@ -29,7 +29,7 @@ func newList(args ...int) *ListNode {
 	var head ListNode
 	var p *ListNode = &head 
 	for _, v := range args {
-		node := new(ListNode)  //使用 new 实例化一个结构体
+		node := new(ListNode)  //结构体使用new来开辟内存空间  （是一个地址）
 		p.Next = node
 		node.Val = v
 		p = p.Next

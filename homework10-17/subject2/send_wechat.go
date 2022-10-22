@@ -1,14 +1,10 @@
-package homework1017
+package subject2
 
 import (
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
-	"testing"
-	"time"
 )
 
 // 在Go中Http请求的返回结果为 *http.Response 类型，response.Body 类型为 io.Reader，把请求结果转化为Map
@@ -22,18 +18,25 @@ func Transformation(response *http.Response) map[string]interface{} {
 }
 
 // 推送消息
-func refer(title, desp string) (string, string, string) {
-	api := "https://sctapi.ftqq.com/"
+func Refer(title, desp, secert string) (string, string, string) {
+	const api = "https://sctapi.ftqq.com/"
 
-	//从文件读取sendkey
+	/* //从文件读取sendkey
 	path := "E:\\Desktop\\data.txt"
-	fi, _ := os.Open(path)
+	fi, err := os.Open(path)
+	if err != nil {
+		log.Fatal(err)
+	}
 	str, err := ioutil.ReadAll(fi)
+	if err != nil {
+		log.Fatal(err)
+	} */
+
+	resp, err := http.Get(api + secert + ".send?title=" + title + "&desp=" + desp)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	resp, _ := http.Get(api + string(str) + ".send?title=" + title + "&desp=" + desp)
 	//调用Transformation函数进行返回值转换
 	result := Transformation(resp)
 
@@ -48,8 +51,8 @@ func refer(title, desp string) (string, string, string) {
 }
 
 // 查询推送状态
-func consult(pushid, readkey string) string {
-	api := "https://sctapi.ftqq.com/"
+func Consult(pushid, readkey string) string {
+	const api = "https://sctapi.ftqq.com/"
 	resp, _ := http.Get(api + "push?id=" + pushid + "&readkey=" + readkey)
 
 	//读取wxstatus
@@ -68,7 +71,7 @@ func consult(pushid, readkey string) string {
 	return errmsg.(string)
 }
 
-// 测试函数
+/* // 测试函数
 func TestPushWeChat(t *testing.T) {
 	data := []struct {
 		title   string
@@ -95,3 +98,4 @@ func TestPushWeChat(t *testing.T) {
 		}
 	}
 }
+*/
