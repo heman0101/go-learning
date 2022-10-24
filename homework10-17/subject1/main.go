@@ -4,8 +4,8 @@ import (
 	"bufio"
 	"flag" //进行命令行解析
 	"fmt"
+	"go-learning/homework10-17/subject1/core"
 	"os"
-	"homework10-17/subject1/core"
 )
 
 var version = flag.Bool("v", false, "client version")
@@ -40,7 +40,7 @@ func main() {
 		case statement:
 			result, err = core.Statement()
 		case dogDiary:
-			result, err = core.DogDiary()
+			result, err = core.Diary()
 		case "quit", "exit", "3":
 			fmt.Println("\n再见")
 			return

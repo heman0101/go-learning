@@ -10,7 +10,7 @@ import (
 
 func TestSendWeChat(t *testing.T) {
 	//从文件读取sendkey
-	path := "E:\\Desktop\\data.txt"
+	path := "F:/data.txt"
 	fi, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
@@ -23,7 +23,6 @@ func TestSendWeChat(t *testing.T) {
 	data := []struct {
 		title string
 		desp  string
-		// secert string
 		answer1 string
 		answer2 string
 	}{

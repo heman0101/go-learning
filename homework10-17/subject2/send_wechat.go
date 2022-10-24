@@ -53,8 +53,10 @@ func Refer(title, desp, secert string) (string, string, string) {
 // 查询推送状态
 func Consult(pushid, readkey string) string {
 	const api = "https://sctapi.ftqq.com/"
-	resp, _ := http.Get(api + "push?id=" + pushid + "&readkey=" + readkey)
-
+	resp, err := http.Get(api + "push?id=" + pushid + "&readkey=" + readkey)
+	if err != nil {
+		log.Fatal(err)
+	}
 	//读取wxstatus
 	result := Transformation(resp)
 	data := result["data"]
@@ -63,9 +65,9 @@ func Consult(pushid, readkey string) string {
 
 	//读取errmsg
 	wxstatus_map := make(map[string]interface{})
-	err := json.Unmarshal([]byte(wxstatus.(string)), &wxstatus_map)
+	err = json.Unmarshal([]byte(wxstatus.(string)), &wxstatus_map)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	errmsg := wxstatus_map["errmsg"]
 	return errmsg.(string)
